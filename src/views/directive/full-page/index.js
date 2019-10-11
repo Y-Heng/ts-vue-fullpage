@@ -85,8 +85,6 @@ fullpage.initScrollDirection = function() {
 };
 
 fullpage.scrollRun = function(e) {
-  debugger;
-  console.log(e);
   if (e.wheelDelta > 0) {
     //兼容IE,Opera,Chrome
     console.log("向上滚动");
@@ -122,10 +120,11 @@ fullpage.init = function(el, options, vnode) {
   if (document.addEventListener) {
     el.addEventListener("DOMMouseScroll", that.scrollRun, false);
   }
-  el.addEventListener("scroll", that.scrollRun);
-  el.onscroll = e => {
-    console.log(e);
-  };
+  el.onmousewheel = that.scrollRun;
+  // el.addEventListener("scroll", that.scrollRun);
+  // el.onscroll = e => {
+  //   console.log(e);
+  // };
   window.setTimeout(function() {
     that.width = that.parentEle.offsetWidth;
     that.height = that.parentEle.offsetHeight;
