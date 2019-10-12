@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #8c9aff;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="矩形_2678" data-name="矩形 2678" class="cls-1" width="24" height="24" transform="translate(1140 615.392)"/>
+    </clipPath>
+  </defs>
+  <g id="蒙版组_173" data-name="蒙版组 173" class="cls-2" transform="translate(-1140 -615.392)">
+    <path id="编辑" class="cls-1" d="M22.453,22.261H1.706a.864.864,0,1,0,0,1.729H22.453a.864.864,0,1,0,0-1.729ZM2.219,21.483a.8.8,0,0,0,.254-.04l6.754-2.063a.8.8,0,0,0,.357-.219L22.908,5.842a1.619,1.619,0,0,0,0-2.305L19.813.46a1.648,1.648,0,0,0-2.305,0L4.2,13.778a.824.824,0,0,0-.184.282l-2.6,6.224a.864.864,0,0,0,.161.916.847.847,0,0,0,.64.282ZM18.672,1.756,21.588,4.7,19.531,6.758,16.592,3.819ZM5.544,14.878l9.843-9.837L18.326,7.98l-9.8,9.8L3.723,19.252Z" transform="translate(1139.884 615.402)"/>
+  </g>
+</svg>

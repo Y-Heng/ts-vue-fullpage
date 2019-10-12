@@ -85,7 +85,6 @@ fullpage.initScrollDirection = function() {
 }
 
 fullpage.scrollRun = function(e) {
-  console.log('进入监听')
   let that = fullpage
   let der = 0
   if (e.wheelDelta > 0) {
@@ -142,7 +141,6 @@ fullpage.init = function(el, options, vnode) {
     el.addEventListener('DOMMouseScroll', that.scrollRun, { passive: true })
   }
   el.addEventListener('mousewheel', that.scrollRun, { passive: true })
-  // el.onmousewheel = that.scrollRun
   window.setTimeout(function() {
     that.width = that.parentEle.offsetWidth
     that.height = that.parentEle.offsetHeight

@@ -1,0 +1,28 @@
+/* Colors
+-------------------------- */
+$--color-white: #fff !default;
+$--color-black: #000 !default;
+
+$--color-bg-lighter: #394054 !default; //订单背景色
+$--color-bg-light: #303647 !default; // 顶部背景色
+$--color-bg: #262a38 !default; // 主题背景色
+$--color-bg-dark: #202430 !default; // input slect框
+$--color-bg-darker: #1e1e1e !default; // 暂未使用
+
+$--color-primary: #99a8fe !default;
+$--color-success: #8de490 !default;
+$--color-warning: #e6a23c !default;
+$--color-danger: #e60000 !default;
+$--color-info: #909399 !default;
+// text color
+$--color-text: #818eb3;
+$--color-text-dark: mix($--color-black, $--color-text, 30%) !default;
+$--color-text-light: mix($--color-white, $--color-text, 30%) !default;
+$--color-text-lighter: mix($--color-white, $--color-text, 60%) !default;
+//sidebar
+$--menu-bg: #2b333e;
+$--menu-sub-bg: rgba(255, 130, 68, 0.1);
+$--menu-hover: rgba(255, 130, 68, 0.3);
+$--menu-text: #fff;
+$--menu-active-bg: #ff8244;
+$--menu-active-text: #ff8244;

@@ -11,6 +11,7 @@
     "animate.css": "^3.7.2",
     "core-js": "^2.6.5",
     "fullpage.js": "^3.0.7",
+    "postcss-px-to-viewport": "^1.1.1",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.1.0",
@@ -30,8 +31,8 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.4.3",
+    "svg-sprite-loader": "^4.1.6",
     "vue-template-compiler": "^2.6.10",
-    "npm-check-updates": "^3.1.24",
     "compression-webpack-plugin": "^3.0.0",
     "uglifyjs-webpack-plugin": "^2.2.0"
   }
