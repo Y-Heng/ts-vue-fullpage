@@ -25,17 +25,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import TouchEmulator from "@/views/directive//full-page/touch.js";
-import VueFullpage from "@/views/directive/full-page/index.js";
-import "@/views/directive/full-page/vue-fullpage.scss";
-TouchEmulator();
-Vue.use(VueFullpage);
+import { Component, Vue } from 'vue-property-decorator'
+import VueFullpage from '@/directive/full-page/index.js'
+import '@/directive/full-page/vue-fullpage.scss'
+// import TouchEmulator from "@/directive//full-page/touch.js";
+// TouchEmulator();
+Vue.use(VueFullpage)
 
 export default class Home extends Vue {
   private opts: any = {
     start: 0,
-    dir: "v",
+    dir: 'v',
     loop: false,
     needIndicator: true,
     duration: 500
@@ -51,7 +51,11 @@ export default class Home extends Vue {
   width: 100%;
   height: 100%;
   .page {
-    background-color: aqua;
+    background: radial-gradient(
+      circle,
+      rgba(46, 93, 149, 1) 0%,
+      rgba(10, 10, 63, 1) 100%
+    );
   }
   .page-2 {
     background-color: pink;
