@@ -85,15 +85,35 @@ fullpage.initScrollDirection = function() {
 };
 
 fullpage.scrollRun = function(e) {
+  let that = fullpage;
+  let der = 0;
   if (e.wheelDelta > 0) {
     //兼容IE,Opera,Chrome
-    console.log("向上滚动");
+    der = -1;
   } else if (e.detail > 0) {
     //兼容Firefox
-    console.log("向上滚动");
+    der = -1;
   } else {
-    console.log("向下滚动");
+    der = 1;
   }
+  if (that.scrollRunTime) {
+    return;
+  }
+  that.scrollRunTime = setTimeout(() => {
+    let nextIndex = that.curIndex + der;
+    if (nextIndex >= 0 && nextIndex < that.total) {
+      that.moveTo(nextIndex, true);
+    } else {
+      if (that.o.loop) {
+        nextIndex = nextIndex < 0 ? that.total - 1 : 0;
+        that.moveTo(nextIndex, true);
+      } else {
+        that.curIndex = nextIndex < 0 ? 0 : that.total - 1;
+      }
+    }
+    clearTimeout(that.scrollRunTime);
+    that.scrollRunTime = null;
+  }, that.o.duration);
 };
 fullpage.init = function(el, options, vnode) {
   var that = fullpage;
@@ -121,10 +141,6 @@ fullpage.init = function(el, options, vnode) {
     el.addEventListener("DOMMouseScroll", that.scrollRun, false);
   }
   el.onmousewheel = that.scrollRun;
-  // el.addEventListener("scroll", that.scrollRun);
-  // el.onscroll = e => {
-  //   console.log(e);
-  // };
   window.setTimeout(function() {
     that.width = that.parentEle.offsetWidth;
     that.height = that.parentEle.offsetHeight;
