@@ -13,7 +13,21 @@ var opt = {
   beforeChange: function(data) {},
   afterChange: function(data) {}
 }
-
+window.onresize = () => {
+  let that = fullpage
+  let width = document.documentElement.clientWidth
+  if (that.WinOnresizeTime) {
+    return
+  }
+  that.WinOnresizeTime = setTimeout(() => {
+    if (width > 810) {
+      that.init(that.el, that.o)
+    } else {
+      that.destroy()
+    }
+    that.WinOnresizeTime = null
+  }, 500)
+}
 fullpage.install = function(Vue, options) {
   var that = fullpage
   Vue.directive('fullpage', {
@@ -115,12 +129,28 @@ fullpage.scrollRun = function(e) {
     that.scrollRunTime = null
   }, that.o.duration)
 }
+fullpage.destroy = function() {
+  let that = fullpage
+  that.el.removeEventListener('mousewheel', that.scrollRun, { passive: true })
+  for (var i = 0; i < that.pageEles.length; i++) {
+    var pageEle = that.pageEles[i]
+    pageEle.setAttribute('data-id', i)
+    pageEle.style.width = ''
+    pageEle.style.height = ''
+    pageEle.removeEventListener('touchstart', that.touchstart, { passive: true })
+    pageEle.removeEventListener('touchend', that.touchend, { passive: true })
+  }
+  if (that.el.parentNode.children[1]) {
+    that.el.parentNode.removeChild(that.el.parentNode.children[1])
+  }
+}
 fullpage.init = function(el, options, vnode) {
   var that = fullpage
   that.assignOpts(options)
-
-  that.vm = vnode.context
-  that.vm.$fullpage = that
+  if (vnode) {
+    that.vm = vnode.context
+    that.vm.$fullpage = that
+  }
   that.curIndex = that.o.start
 
   that.startY = 0
@@ -163,6 +193,9 @@ fullpage.init = function(el, options, vnode) {
 fullpage.addIndicator = function() {
   let that = fullpage
   let ulDom = document.createElement('ul')
+  if (that.el.parentNode.children.length > 1) {
+    return
+  }
   for (let i = 0; i < that.pageEles.length; i++) {
     let LiDom = document.createElement('li')
     LiDom.setAttribute('data-index', i)
@@ -197,46 +230,43 @@ fullpage.selIndicator = function(sel_index) {
 fullpage.initEvent = function(el) {
   var that = fullpage
   that.prevIndex = that.curIndex
-  el.addEventListener(
-    'touchstart',
-    function(e) {
-      if (that.o.movingFlag) {
-        return false
-      }
-      that.startX = e.targetTouches[0].pageX
-      that.startY = e.targetTouches[0].pageY
-    },
-    { passive: true }
-  )
-  el.addEventListener(
-    'touchend',
-    function(e) {
-      if (that.o.movingFlag) {
-        return false
-      }
-      var dir = that.o.dir
-      var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width
-      var der = sub > that.o.der ? -1 : sub < -that.o.der ? 1 : 0
-      // that.curIndex推迟到moveTo执行完之后再更新
-      var nextIndex = that.curIndex + der
-
-      if (nextIndex >= 0 && nextIndex < that.total) {
-        that.moveTo(nextIndex, true)
-      } else {
-        if (that.o.loop) {
-          nextIndex = nextIndex < 0 ? that.total - 1 : 0
-          that.moveTo(nextIndex, true)
-        } else {
-          that.curIndex = nextIndex < 0 ? 0 : that.total - 1
-        }
-      }
-    },
-    { passive: true }
-  )
+  el.addEventListener('touchstart', that.touchstart, { passive: true })
+  el.addEventListener('touchend', that.touchend, { passive: true })
   if (that.o.preventWechat) {
     el.addEventListener('touchmove', function(e) {
       e.preventDefault()
     })
+  }
+}
+
+fullpage.touchstart = function(e) {
+  let that = fullpage
+  if (that.o.movingFlag) {
+    return false
+  }
+  that.startX = e.targetTouches[0].pageX
+  that.startY = e.targetTouches[0].pageY
+}
+fullpage.touchend = function(e) {
+  let that = fullpage
+  if (that.o.movingFlag) {
+    return false
+  }
+  var dir = that.o.dir
+  var sub = dir === 'v' ? (e.changedTouches[0].pageY - that.startY) / that.height : (e.changedTouches[0].pageX - that.startX) / that.width
+  var der = sub > that.o.der ? -1 : sub < -that.o.der ? 1 : 0
+  // that.curIndex推迟到moveTo执行完之后再更新
+  var nextIndex = that.curIndex + der
+
+  if (nextIndex >= 0 && nextIndex < that.total) {
+    that.moveTo(nextIndex, true)
+  } else {
+    if (that.o.loop) {
+      nextIndex = nextIndex < 0 ? that.total - 1 : 0
+      that.moveTo(nextIndex, true)
+    } else {
+      that.curIndex = nextIndex < 0 ? 0 : that.total - 1
+    }
   }
 }
 
