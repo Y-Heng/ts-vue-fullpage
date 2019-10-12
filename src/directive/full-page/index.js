@@ -1,5 +1,5 @@
 'use strict'
-
+import './vue-fullpage.scss'
 var fullpage = {}
 var opt = {
   start: 0,

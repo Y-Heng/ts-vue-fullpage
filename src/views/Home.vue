@@ -27,7 +27,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import VueFullpage from '@/directive/full-page/index.js'
-import '@/directive/full-page/vue-fullpage.scss'
 // import TouchEmulator from "@/directive//full-page/touch.js";
 // TouchEmulator();
 Vue.use(VueFullpage)
