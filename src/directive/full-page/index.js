@@ -1,4 +1,3 @@
-'use strict'
 import './vue-fullpage.scss'
 var fullpage = {}
 var opt = {
