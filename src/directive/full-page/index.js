@@ -138,7 +138,11 @@ fullpage.destroy = function() {
     pageEle.style.height = ''
     pageEle.removeEventListener('touchstart', that.touchstart, { passive: true })
     pageEle.removeEventListener('touchend', that.touchend, { passive: true })
+    pageEle.classList.remove('page')
   }
+  that.el.parentNode.classList.remove('fullpage-container')
+  that.el.style.transform = ''
+  that.el.classList.remove('fullpage-wp')
   if (that.el.parentNode.children[1]) {
     that.el.parentNode.removeChild(that.el.parentNode.children[1])
   }
@@ -163,7 +167,10 @@ fullpage.init = function(el, options, vnode) {
 
   that.pageEles = that.el.children
   that.total = that.pageEles.length
-
+  if (document.documentElement.clientWidth < 810) {
+    that.destroy()
+    return
+  }
   that.initScrollDirection()
 
   if (document.addEventListener) {

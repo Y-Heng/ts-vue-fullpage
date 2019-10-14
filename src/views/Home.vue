@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
-    <div class="fullpage-wp" v-fullpage="opts">
-      <div class="page page1">
+    <div v-fullpage="opts">
+      <div class="apage page1">
         <h1 class="title">打造「高效智能化」内部协作</h1>
         <div class="buttons">
           <div class="button">
@@ -14,7 +14,7 @@
         <div class="version-des">2019-08-06更新 版本:2.0</div>
         <img src="../assets/home/page1.png" alt class="img" />
       </div>
-      <div class="page page2 two-lines">
+      <div class="apage page2 two-lines">
         <div class="left text-des">
           <div class="title">化妆师智能终端</div>
           <div class="line"></div>
@@ -31,7 +31,7 @@
         </div>
         <img src="../assets/home/page2.png" alt class="img right" />
       </div>
-      <div class="page page3 two-lines">
+      <div class="apage page3 two-lines">
         <img src="../assets/home/page3.png" alt class="img left" />
         <div class="right text-des">
           <div class="title">摄影师端</div>
@@ -48,7 +48,7 @@
           </p>
         </div>
       </div>
-      <div class="page page4 two-lines">
+      <div class="apage page4 two-lines">
         <div class="left text-des">
           <div class="title">修图&审片</div>
           <div class="line"></div>
@@ -102,12 +102,15 @@ export default class Home extends Vue {
 <style lang="scss">
 .page-container {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
   color: #fff;
-  .page {
+  height: 100%;
+  overflow-y: auto;
+  .apage {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     background: radial-gradient(
       circle,
       rgba(46, 93, 149, 1) 0%,
@@ -168,8 +171,13 @@ export default class Home extends Vue {
         padding: 12px 15px;
         margin-left: 15px;
         margin-right: 15px;
+        cursor: pointer;
         .svg-icon {
           margin-right: 5px;
+        }
+        &:hover {
+          background-color: #fff;
+          color: #0a0a3f;
         }
       }
     }
@@ -179,7 +187,7 @@ export default class Home extends Vue {
     }
     .img {
       margin-top: -100px;
-      max-width: 65%;
+      max-width: 70%;
     }
   }
   .two-lines {
@@ -202,7 +210,6 @@ export default class Home extends Vue {
       bottom: 0;
       left: 0;
       right: 0;
-      line-height: 20px;
       .text {
         margin: 0 auto;
       }
@@ -220,16 +227,18 @@ export default class Home extends Vue {
     }
   }
   @media screen and (max-width: 750px) {
-    .two-lines {
-      flex-direction: column;
-      .left {
-        margin-right: 0;
-        margin-bottom: 20px;
-      }
-      .img {
-        max-width: 80%;
-        margin: 0 auto;
-        display: block;
+    .apage {
+      padding-bottom: 25px;
+      padding-top: 25px;
+    }
+    .page4 {
+      flex-wrap: wrap;
+      padding-bottom: 0;
+      .bottom {
+        position: relative;
+        flex: 100%;
+        margin-top: 30px;
+        padding: 10px;
       }
     }
   }
