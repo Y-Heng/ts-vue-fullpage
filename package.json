@@ -10,7 +10,7 @@
   "dependencies": {
     "animate.css": "^3.7.2",
     "core-js": "^2.6.5",
-    "fullpage.js": "^3.0.7",
+    "fullpage.js": "^4.0.5",
     "postcss-px-to-viewport": "^1.1.1",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
